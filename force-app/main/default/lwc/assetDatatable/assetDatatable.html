@@ -1,0 +1,109 @@
+<template>
+<lightning-card title="Asset List" icon-name="standard:account" class="slds-p-around_medium">
+    
+                     <!--Search Fields Section Starts Here --> 
+    <span>
+        <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_2-of-12, slds-p-around_medium">
+                    <lightning-combobox name="region" label="Region" data-id="reset" value={value} placeholder="Select Region" options={regionoptions} onchange={regionChange}></lightning-combobox>
+                </div>
+                <div class="slds-col slds-size_2-of-12, slds-p-around_medium">
+                    <lightning-combobox name="route" label="Route" data-id="reset" value={value} placeholder="Select Route" options={routeoptions} onchange={RouteChange} ></lightning-combobox>
+                </div>
+                <div class="slds-col slds-size_2-of-12, slds-p-around_medium">
+                    <lightning-combobox name="area" label="Area" data-id="reset" value={value} placeholder="Select Area" options={areaoptions} onchange={AreaChange} ></lightning-combobox>
+                </div>
+                <div class="slds-col slds-size_2-of-12, slds-p-around_medium">
+                    <lightning-combobox name="elr" label="ELR" data-id="reset" value={value} placeholder="Select ELR" options={elroptions} onchange={ElrChange} ></lightning-combobox>
+                </div>
+                <div class="slds-col slds-size_2-of-12, slds-p-around_medium">
+                    <lightning-input type="text" label="Railway Id" data-id="reset" value={value} onchange={railwayidchange}></lightning-input>
+                </div>
+                <div class="slds-col slds-size_2-of-12, slds-p-around_medium">
+                    <lightning-combobox name="assettype" label="Asset Type"  data-id="reset" value={value} placeholder="Select Asset Type" options={assetoptions} onchange={AssetChange} ></lightning-combobox>
+                </div>
+        </div>
+    </span>
+    <!-- Second Line of Search Section -->
+    <span>
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_2-of-12, slds-p-around_medium">
+                <lightning-input type="decimal" label="Start Milage" data-id="reset" value={startmileage} onchange={smchange} step="any"></lightning-input>
+                </div>
+                <div class="slds-col slds-size_2-of-12, slds-p-around_medium">
+                    <lightning-input type="decimal" label="End Milage" data-id="reset" value={endmileage} onchange={emchange} step="any"></lightning-input>
+                    </div>
+        </div>
+        <!--Search Fields Section Ends Here --> 
+
+        <!--Search Button Section --> 
+        <lightning-accordion class="example-accordion"  active-section-name="A">
+            <lightning-accordion-section name="A"  label = "Advanced Search Criteria">
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_2-of-12, slds-p-around_medium">
+            <lightning-button  label = "Reset" onclick={handleReset}></lightning-button>
+            </div>
+            <div class="slds-col slds-size_2-of-12, slds-p-around_medium">
+                <lightning-button-menu label="Save Search" alternative-text="Show menu">
+                   <!-- <lightning-menu-item value="MenuItemOne" label="Pdf"></lightning-menu-item>
+                   <lightning-menu-item value="MenuItemTwo" label="Csv"></lightning-menu-item> -->
+                    
+                </lightning-button-menu>
+            </div>
+            <div class="slds-col slds-size_2-of-12, slds-p-around_medium">
+            <lightning-button  label="Search" variant="brand" onclick={handleClick}></lightning-button>
+            </div>
+        </div>
+    </lightning-accordion-section>
+    </lightning-accordion>
+    </span>
+    <!--Datatable Section Starts Here --> 
+   <div class="slds-clearfix">
+    
+       <lightning-combobox  class="slds-float_right"  name="assignment"  value={Assignment}  options={assignoptions} onchange={assignChange} ></lightning-combobox>
+   </div>
+   <br>
+    <div >       
+<template if:true={records}>
+<lightning-datatable data={recordsToDisplay} columns={columns} key-field="Id">
+</lightning-datatable>
+
+</template>
+</div>
+<!--Datatable Section Ends Here -->
+
+<div class="slds-grid slds-grid_vertical-align-center slds-grid_align-spread" style="padding-top: 0.5em;">
+    <!--RECORDS PER PAGE-->
+    <div class="slds-col">
+        <div class="slds-list_inline slds-p-bottom_xx-small">
+            <label class="slds-text-color_weak slds-p-horizontal_x-small" for="recordsPerPage">Page Size:</label>
+            <div class="slds-select_container">
+                <select class="slds-select" id="recordsPerPage" onchange={handleRecordsPerPage}>
+                    <template for:each={pageSizeOptions} for:item="option">
+                        <option key={option} value={option}>{option}</option>
+                    </template>
+                </select>
+            </div>
+        </div>
+    </div>
+    <!--PAGE NAVIGATION-->
+    <div class="slds-align_absolute-center" style="height:5rem">
+        <lightning-button disabled={bDisableFirst} icon-name="utility:jump_to_left" label="First" class="slds-p-horizontal_x-small" alternative-text="first page" onclick={firstPage}></lightning-button>
+        <lightning-button disabled={bDisableFirst} icon-name="utility:chevronleft" label="Previous" alternative-text="Previous" onclick={previousPage}></lightning-button>
+        &nbsp;
+        <span class="slds-badge">Showing {pageNumber} &nbsp;of&nbsp; {totalPages} &nbsp;&nbsp;Page(s)</span> &nbsp;
+        <lightning-button disabled={bDisableLast} icon-name="utility:chevronright" label="Next" alternative-text="Next" onclick={nextPage} class="slds-p-horizontal_x-small" icon-position="right"></lightning-button>
+        <lightning-button disabled={bDisableLast} icon-name="utility:jump_to_right" label="Last" alternative-text="last page" onclick={lastPage} icon-position="right"></lightning-button>
+    </div>
+    <!--TOTAL RECORDS-->
+    <div class="slds-clearfix">
+        <div class="slds-float_right">
+            <span class="slds-badge"> Total Records: {totalRecords}</span>
+        </div>
+    </div>
+</div>
+
+</lightning-card>
+
+
+</template>

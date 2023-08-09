@@ -1,0 +1,62 @@
+<template>
+    <lightning-card title="Two way Data Binding">
+        <div class="slds-m-around_medium">
+           <lightning-input type="text" label="Enter Name" onkeyup={subjectChange}></lightning-input>
+        </div>
+       <div> {subject} is my course</div>
+   
+       </lightning-card>
+    <lightning-card title="@Track Example">
+     <div class="slds-m-around_medium">
+        <lightning-input type="text" label="Enter Name" onkeyup={handleChange}></lightning-input>
+     </div>
+    <div> {address.city} is my city</div>
+
+    </lightning-card>
+    <lightning-card title="Getters Demo">
+       
+       <div> {firstvalue} </div>
+       <div> {multiply} </div>
+       
+       </lightning-card>
+       <lightning-card title="True False Demo">
+       <lightning-button label="Click" onclick={handleClick}></lightning-button>
+        <template if:true={isvisible}>
+            <div>These is true Data Visible</div>
+        </template>
+        <template if:false={isvisible}>
+            <div>Click button</div>
+        </template>
+        <lightning-input type="text" label="Type Hello to see Data" onkeyup={changeHandle}></lightning-input>
+        <template if:true={namechange}>
+            <div>You Have type Correctly</div>
+        </template>
+        </lightning-card>
+        <lightning-card title="For Loop">
+            <template for:each={carlist} for:item="car">
+                <ul key={car} class="slds-has-dividers_around-space">
+                    <li class="slds-item">{car}</li>
+                </ul>
+            </template>
+        </lightning-card>
+        <lightning-card title="Iterator">
+          <div class="slds-m-around_medium">
+            <template iterator:ceo={ceolist}>
+                <div key={ceo.value.id}>
+                    <template if:true={ceo.first}>
+                        <div class="slds-box slds-theme_shade"> <strong> List of Company CEO </strong> </div>
+                    </template>
+                <ul  class="slds-has-dividers_around-space">
+                    <li class="slds-item"><strong>{ceo.value.company} </strong>
+                        {ceo.value.ceo}</li>
+                </ul>
+                <template if:true={ceo.last}>
+                    <div class="slds-box slds-theme_shade"> <strong> Thank You </strong> </div>
+                </template>
+
+                </div>
+            </template>
+        </div>
+        </lightning-card>
+
+</template>

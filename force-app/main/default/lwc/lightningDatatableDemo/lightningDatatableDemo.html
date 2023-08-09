@@ -1,0 +1,16 @@
+<template>
+    <lightning-card title="Account DataTabe (10 Accounts)">
+    <div class="slds-m-around_medium">
+    <template if:true={acclist} >
+        <lightning-datatable 
+        data = {acclist}
+        columns={columns}
+        key-field="Id">
+    </lightning-datatable>
+    </template>
+    <template if:true={error}>
+        {error}
+    </template>
+</div>
+</lightning-card>
+</template>

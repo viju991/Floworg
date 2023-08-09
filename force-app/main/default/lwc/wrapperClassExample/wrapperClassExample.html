@@ -1,0 +1,24 @@
+<template>
+    <lightning-card title="Account With Contacts Using Wrapper Class">
+        <div class="slds-m-around_medium">
+            <template if:true={accountsWithContact}>
+                <template for:each={accountsWithContact} for:item="accWithContacts">
+                    <div key={accWithContacts.accRecord.Id}>
+                        <div class="slds-tect-heading_medium"><strong>{accWithContacts.accRecord.Name}</strong></div>
+                        <template if:true={accWithContacts.contactList}>
+                            Contacts Count id {accWithContacts.contactCount}. Here is List:
+                            <ul class="slds-list_dotted">
+                                <template for:each={accWithContacts.contactList} for:item="con">
+                                    <li key = {con.Id}>{con.Name}</li>
+                                </template>
+                            </ul>
+                        </template>
+                    </div>
+                </template>
+            </template>
+            <template if:true={error}>
+                {error}
+            </template>
+        </div>
+    </lightning-card>
+</template>

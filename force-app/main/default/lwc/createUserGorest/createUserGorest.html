@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="Create User">
+        <div class="slds-p-around_medium">
+            <lightning-input label="Name" data-id="reset" value={name} onchange={nameChange}></lightning-input> 
+            <lightning-input label="Email" data-id="reset" value={email} onchange={emailChange}></lightning-input> 
+            <lightning-input label="Gender" data-id="reset" value={gender} onchange={genderChange}></lightning-input> 
+            <lightning-input label="Status" data-id="reset" value={status} onchange={statusChange}></lightning-input> 
+        </div>
+        <div class="slds-p-around_medium">
+            <lightning-button label="Save" variant="brand" onclick={handleSave}></lightning-button>
+        </div>
+    </lightning-card>
+</template>

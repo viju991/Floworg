@@ -1,0 +1,12 @@
+<template>
+    <lightning-card title="Pin Code">
+        <div class="slds-p-around_medium">
+            <lightning-input type="text" label="Enter Email" value={email} onchange={handleemailChange}></lightning-input>
+            <lightning-textarea  label="Enter Subject" value={subject} onchange={handlesubjectChange}></lightning-textarea>
+            
+        </div>
+        <div class="slds-p-around_medium">
+            <lightning-button label="Send Email" onclick={handleClick}></lightning-button>
+        </div>
+    </lightning-card>
+</template>

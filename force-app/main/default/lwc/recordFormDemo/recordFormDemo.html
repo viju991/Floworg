@@ -1,0 +1,53 @@
+<template>
+    <lightning-card title="Create a record using a Lightning Form">
+        <div class="slds-m-around_medium">
+        <lightning-record-form
+        object-api-name={objectname}
+        fields={fields}
+        onsuccess={successHandler}>
+        </lightning-record-form>
+    </div>
+    </lightning-card>
+    <lightning-card title="View a record using a Lightning Form">
+        <div class="slds-m-around_medium">
+        <lightning-record-form
+        object-api-name={objectname}
+        fields={fields}
+       record-id="0012w00001abUymAAE">
+        </lightning-record-form>
+    </div>
+    </lightning-card>
+    <lightning-card title="Read Only Mode - View a record using a Lightning Form">
+        <div class="slds-m-around_medium">
+        <lightning-record-form
+        object-api-name={objectname}
+        fields={fields}
+       record-id="0012w00001abUymAAE"
+       mode="readonly">
+        </lightning-record-form>
+    </div>
+    </lightning-card>
+    <lightning-card title="Edit Mode - View a record using a Lightning Form">
+        <div class="slds-m-around_medium">
+        <lightning-record-form
+        object-api-name={objectname}
+        fields={fields}
+       record-id="0012w00001abUymAAE"
+       mode="edit"
+       columns="2">
+        </lightning-record-form>
+    </div>
+    </lightning-card>
+    <lightning-card title="Compact Layout & Edit Mode- View a record using a Lightning Form">
+        <div class="slds-m-around_medium">
+        <lightning-record-form
+        object-api-name={objectname}
+        fields={fields}
+       record-id="0012w00001abUymAAE"
+       mode="edit"
+       columns="2"
+       layout-type="Compact">
+        </lightning-record-form>
+    </div>
+    </lightning-card>
+</template>

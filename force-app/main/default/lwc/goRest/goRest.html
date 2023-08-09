@@ -1,0 +1,19 @@
+<template>
+    <lightning-card title="Get User details">
+        <div class="slds-m-around_medium">
+            <lightning-button label="Get Details" variant="brand" onclick={handleClick}></lightning-button>
+        </div>
+        <template if:true={userDetails}>
+            <template for:each={userDetails} for:item="user">
+                <div class="slds-p-around_medium" key={user.id}>
+                    <p> User Id : {user.id}</p>
+                    <p> User Name : {user.name}</p>
+                    <p> User Gender : {user.gender}</p>
+                    <p> User Email : {user.email}</p>
+                    <p> User Status : {user.status}</p>
+                    
+                </div>
+            </template>
+        </template>
+    </lightning-card>
+</template>

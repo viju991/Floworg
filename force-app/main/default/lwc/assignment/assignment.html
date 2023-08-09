@@ -1,0 +1,142 @@
+<template>
+    <lightning-card title="Asset List" icon-name="standard:account" class="slds-p-around_medium">
+   <span>
+       <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_2-of-12, slds-p-around_medium">
+                <lightning-combobox name="region" label="Region" value={value} placeholder="Select Region" options={regionoptions} onchange={regionChange}></lightning-combobox>
+            </div>
+            <div class="slds-col slds-size_2-of-12, slds-p-around_medium">
+                <lightning-combobox name="route" label="Route" value={value} placeholder="Select Route" options={routeoptions} onchange={RouteChange} ></lightning-combobox>
+            </div>
+            <div class="slds-col slds-size_2-of-12, slds-p-around_medium">
+                <lightning-combobox name="area" label="Area" value={value} placeholder="Select Area" options={areaoptions} onchange={AreaChange} ></lightning-combobox>
+            </div>
+            <div class="slds-col slds-size_2-of-12, slds-p-around_medium">
+                <lightning-combobox name="elr" label="ELR" value={value} placeholder="Select ELR" options={elroptions} onchange={ElrChange} ></lightning-combobox>
+            </div>
+            <div class="slds-col slds-size_2-of-12, slds-p-around_medium">
+                <lightning-input type="text" label="Railway Id" value={RailwayId} onchange={railwayidchange}></lightning-input>
+            </div>
+            <div class="slds-col slds-size_2-of-12, slds-p-around_medium">
+                <lightning-combobox name="assettype" label="Asset Type" value={value} placeholder="Select Asset Type" options={assetoptions} onchange={AssetChange} ></lightning-combobox>
+            </div>
+       </div>
+   </span>
+   <span>
+       <div class="slds-grid slds-wrap">
+           <div class="slds-col slds-size_2-of-12, slds-p-around_medium">
+            <lightning-input type="number" label="Start Milage" value={startmileage} onchange={smchange} step="any"></lightning-input>
+            </div>
+            <div class="slds-col slds-size_2-of-12, slds-p-around_medium">
+                <lightning-input type="number" label="End Milage" value={endmileage} onchange={emchange} step="any"></lightning-input>
+                </div>
+       </div>
+       <div>
+        <lightning-button label="Search" variant="brand" onclick={handleClick}></lightning-button>
+       </div>
+   </span>
+        </lightning-card>
+<!--Data Table Starts Here-->
+<template if:true={assets}>
+<lightning-card  title="Asset">
+    <div class="slds-scrollable_x" >
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered ">
+        <thead>
+            <tr class="slds-line-height_reset ">
+                <th  class="slds-is-resizable" scope="col">
+                    <div class="slds-truncate" title="Asset Name">
+                        Asset Name
+                    </div>
+                </th>
+                <th  class="slds-is-resizable" scope="col">
+                    <div class="slds-truncate" title="ELR">
+                        ELR
+                    </div>
+                </th>
+                <th  class="slds-is-resizable" scope="col">
+                    <div class="slds-truncate" title="Mileage Start">
+                        Mileage Start
+                    </div>
+                </th>
+                <th class="slds-is-resizable" scope="col">
+                    <div class="slds-truncate" title="Mileage End">
+                        Mileage End
+                    </div>
+                </th>
+                <th class="slds-is-resizable" scope="col">
+                    <div class="slds-truncate" title="Railway Id">
+                        Railway Id
+                    </div>
+                </th>
+                <th class="slds-is-resizable" scope="col">
+                    <div class="slds-truncate" title=" Region">
+                        Region
+                    </div>
+                </th>
+                <th class="slds-is-resizable" scope="col">
+                    <div class="slds-truncate" title="Route">
+                        Route
+                    </div>
+                </th>
+                <th class="slds-is-resizable" scope="col">
+                    <div class="slds-truncate" title="Area">
+                        Area
+                    </div>
+                </th>
+                <th class="slds-is-resizable" scope="col">
+                    <div class="slds-truncate" title="Asset Type">
+                        Asset Type
+                    </div>
+                </th>
+                <th class="slds-is-resizable" scope="col">
+                    <div class="slds-truncate" title="Description">
+                        Description
+                    </div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+         
+                <template for:each={assets} for:item="asset">
+                    <tr key={asset.Id}>
+                        <th scope="row" data-label="Name">
+                            <div class="slds-truncate" title= "Asset Name">{asset.Name}</div>
+                        </th>
+                        <th scope="row" data-label="ELR">
+                            <div class="slds-truncate" title="ELR">{asset.ST_Primary_ELR__r.ST_ELR_Code__c}</div>
+                        </th>
+                        <th scope="row" data-label="Mileage Start">
+                            <div class="slds-truncate" title="Mileage Start" >{asset.Track_Infos__r.ST_Start_Mileage__c}</div>
+                        </th>
+                        <th scope="row" data-label="Mileage End">
+                            <div class="slds-truncate" title="Mileage End" >{asset.Track_Infos__r.ST_End_Mileage__c}</div>
+                        </th>
+                        <th scope="row" data-label="Railway Id">
+                            <div class="slds-truncate" title="Railway Id">{asset.ST_Railway_ID__c}</div>
+                        </th>
+                        <th scope="row" data-label="Region">
+                            <div class="slds-truncate" title="Region">{asset.ST_Region__c}</div>
+                        </th>
+                        <th scope="row" data-label="Route">
+                            <div class="slds-truncate" title="Route">{asset.ST_Area__r.ST_Route__r.Name}</div>
+                        </th>
+                        <th scope="row" data-label="Area">
+                            <div class="slds-truncate" title="Area">{asset.ST_Area__r.Name}</div>
+                        </th>
+                        <th scope="row" data-label="Asset Type">
+                            <div class="slds-truncate" title="Asset Type">{asset.ST_Asset_Type__c}</div>
+                        </th>
+                        <th scope="row" data-label="Description">
+                            <div class="slds-truncate" title="Description">{asset.Description}</div>
+                        </th>
+                        
+
+</tr>
+</template>
+
+</tbody>
+</table>
+</div>
+</lightning-card>
+</template>
+</template>
